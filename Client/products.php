@@ -48,7 +48,13 @@ if ($category_id) {
 
 $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
 $stmt->bindParam(':items_per_page', $items_per_page, PDO::PARAM_INT);
-$stmt->execute();
+
+try {
+    $stmt->execute();
+} catch (PDOException $e) {
+    // Xu li gi do o day
+    echo $e->getMessage();
+}
 $donghoList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ob_start();

@@ -202,6 +202,28 @@ ob_start();
     <?php endif; ?>
 </div>
 
+   <!-- Modal Payment Success -->
+    <div class="modal fade" id="transactionSuccessModal" tabindex="-1" aria-labelledby="transactionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="transactionModalLabel">🎉 Thanh Toán Thành Công!</h5>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="fs-5">Cảm ơn quý khách đã mua hàng!</p>
+                    <p class="text-muted">Hy vọng quý khách sẽ hài lòng với sản phẩm/dịch vụ của chúng tôi.</p>
+                    <div class="mt-3">
+                        <img src="https://via.placeholder.com/150" alt="Success" class="img-fluid rounded-circle shadow-sm">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-success btn-lg px-4" id="redirectHome">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <style>
     .cart-section {
         padding: 2rem;
@@ -375,6 +397,22 @@ ob_start();
         quantityInput.value = currentQuantity;
         form.submit();
     }
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.location.href.includes("vnp_Amount")) {
+         
+            let transactionModal = new bootstrap.Modal(document.getElementById('transactionSuccessModal'));
+            transactionModal.show();
+
+            document.getElementById('redirectHome').addEventListener('click', function () {
+                // Thay home url cua em o day
+                window.location.href = "http://quanlydongho:8001/Client/products.php";
+            });
+        }
+    });
+
+
 </script>
 
 <?php
